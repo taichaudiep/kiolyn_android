@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGreenLight"
@@ -60,8 +61,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/edit_login"
-            android:text="@string/connect_btn"
-            android:onClick="connectClick"/>
+            android:onClick="connectClick"
+            android:text="@string/connect_btn" />
 
         <Button
             android:id="@+id/signIn_btn"
@@ -69,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/disconnect_btn"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/edit_login"
             android:text="@string/signIn_btn"
             android:visibility="invisible" />
