@@ -1,29 +1,33 @@
 package com.example.kiolyn
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionManager
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.Toast
+import android.widget.EditText
+import android.widget.RelativeLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.mukesh.OtpView
-import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
 
-    lateinit var connect_btn: Button
-    lateinit var disconnect_btn: Button
-    lateinit var signIn_btn: Button
+    //Root layout
+    lateinit var rootLayout: RelativeLayout
 
-    lateinit var popupWindow: PopupWindow
+    //Component of main layout
+    lateinit var loginView: RelativeLayout
+    lateinit var ip1Input: EditText
+    lateinit var ip2Input: EditText
+    lateinit var connectBtn: Button
+    lateinit var signInBtn: Button
+    lateinit var disconnectVtn: Button
+
+    //Component of popup layout
+    lateinit var popupView: RelativeLayout
+    lateinit var otpInput: OtpView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,37 +38,62 @@ class Login : AppCompatActivity() {
         )
 
         setContentView(R.layout.activity_login)
+        initializeUi()
+    }
 
-        connect_btn = findViewById(R.id.connect_btn)
-        signIn_btn = findViewById(R.id.signIn_btn)
-        disconnect_btn = findViewById(R.id.disconnect_btn)
+    private fun initializeUi() {
+        rootLayout = findViewById(R.id.root_layout)
+
+        loginView = findViewById(R.id.login_layout)
+        ip1Input = findViewById(R.id.input_1)
+        ip2Input = findViewById(R.id.input_2)
+        connectBtn = findViewById(R.id.connect_btn)
+        signInBtn = findViewById(R.id.signIn_btn)
+        disconnectVtn = findViewById(R.id.disconnect_btn)
+
+        popupView = findViewById(R.id.popup_layout)
+        otpInput = findViewById(R.id.otp_view)
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun connectClick(view: View) {
-        connect_btn.visibility = View.INVISIBLE
-        signIn_btn.visibility = View.VISIBLE
-        disconnect_btn.visibility = View.VISIBLE
-
-        val layoutInflater = baseContext
-            .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-        val popupView = layoutInflater.inflate(R.layout.popup_login, null)
-
-        popupWindow = PopupWindow(
-            popupView,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-
-        TransitionManager.beginDelayedTransition(root_layout)
-        popupWindow.showAtLocation(root_layout, Gravity.CENTER, 0, 0)
-        popupWindow.isFocusable = true;
-        popupWindow.update();
+        isEnabledChild(false)
+        showButton(false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    fun disconnectClick(view: View) {
+        showButton(true)
+        ip1Input.setText("")
+        ip2Input.setText("")
+    }
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun acceptClick(view: View) {
-        Toast.makeText(applicationContext, "Connected", Toast.LENGTH_SHORT).show()
-        popupWindow.dismiss()
+        isEnabledChild(true)
+        ip1Input.text = otpInput.text
+        otpInput.setText("")
     }
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    private fun isEnabledChild(isEnable: Boolean) {
+        TransitionManager.beginDelayedTransition(rootLayout)//Animation when show and hide item
+
+        popupView.visibility = if (isEnable) View.INVISIBLE else View.VISIBLE
+        loginView.alpha = if (isEnable) 1f else 0.2f
+        for (i in 1..loginView.childCount) {
+            val child: View = loginView.getChildAt(i - 1)
+            child.isEnabled = isEnable
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    private fun showButton(isConnected: Boolean) {
+        TransitionManager.beginDelayedTransition(rootLayout)//Animation when show and hide item
+
+        connectBtn.visibility = if (isConnected) View.VISIBLE else View.INVISIBLE
+        signInBtn.visibility = if (isConnected) View.INVISIBLE else View.VISIBLE
+        disconnectVtn.visibility = if (isConnected) View.INVISIBLE else View.VISIBLE
+    }
+
 }
