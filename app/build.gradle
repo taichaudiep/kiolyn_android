@@ -37,8 +37,11 @@ dependencies {
     //OTP input
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.0'
     //Recyclerview for list item
-    //noinspection GradleCompatible
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //Refresh when swipe screen
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    //Call request
+    implementation 'com.android.volley:volley:1.1.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

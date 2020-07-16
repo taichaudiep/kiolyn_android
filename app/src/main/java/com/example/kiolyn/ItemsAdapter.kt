@@ -1,21 +1,25 @@
 package com.example.kiolyn
 
-import android.util.Log
+import android.os.Build
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemsAdapter(private val mItems: ArrayList<Items>) :
     RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
+        val itemLayout: LinearLayout = itemView.findViewById(R.id.item_contain)
         val titleTxt: TextView = itemView.findViewById<TextView>(R.id.item_title)
-        val titleBtn: Button = itemView.findViewById<Button>(R.id.item_btn)
-        val detailTxt: TextView = itemView.findViewById(R.id.item_detail)
+        val titleImg: ImageView = itemView.findViewById<ImageView>(R.id.img_view)
+
+        val detailLayout: LinearLayout = itemView.findViewById(R.id.detail_layout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsAdapter.ViewHolder {
@@ -29,17 +33,26 @@ class ItemsAdapter(private val mItems: ArrayList<Items>) :
         return mItems.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onBindViewHolder(holder: ItemsAdapter.ViewHolder, position: Int) {
-        val items: Items = mItems.get(position)
+        val items: Items = mItems[position]
+        val itemLayout = holder.itemLayout
         val titleTxt = holder.titleTxt
-        val titleBtn = holder.titleBtn
-        val detailTxt = holder.detailTxt
+        val titleImg = holder.titleImg
 
-        titleTxt.setText(items.title)
-        titleBtn.setOnClickListener {
-            detailTxt.visibility =
-                if (detailTxt.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        val detailLayout = holder.detailLayout
+
+        titleTxt.text = items.title
+        itemLayout.setOnClickListener {
+            TransitionManager.beginDelayedTransition(detailLayout)
+
+            if (detailLayout.visibility == View.VISIBLE) {
+                detailLayout.visibility = View.GONE
+                titleImg.setImageResource(R.drawable.ic_down_arrow)
+            } else {
+                detailLayout.visibility = View.VISIBLE
+                titleImg.setImageResource(R.drawable.ic_up_arrow)
+            }
         }
     }
-
 }

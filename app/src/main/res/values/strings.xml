@@ -7,4 +7,9 @@
     <string name="input_login_2">IP 2</string>
     <string name="title_popup">IP ADDRESS</string>
     <string name="accept_btn">ACCEPT</string>
+    <string name="title_item">Item</string>
+    <string name="detail_item">Detail</string>
+    <string name="description_img">Icon</string>
+    <string name="tables">TABLES</string>
+    <string name="add">ADD</string>
 </resources>

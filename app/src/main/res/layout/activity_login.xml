@@ -5,7 +5,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGreenLight"
+    android:background="@color/colorGreenDark"
     tools:context=".Login">
 
     <RelativeLayout
@@ -67,6 +67,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/login_btn"
+            android:onClick="signIn"
             android:text="@string/signIn_btn"
             android:visibility="invisible" />
 

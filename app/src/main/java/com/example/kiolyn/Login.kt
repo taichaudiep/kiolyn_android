@@ -1,5 +1,6 @@
 package com.example.kiolyn
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionManager
@@ -66,6 +67,11 @@ class Login : AppCompatActivity() {
         showButton(true)
         ip1Input.setText("")
         ip2Input.setText("")
+    }
+
+    fun signIn(view: View) {
+        val intent = Intent(this, com.example.kiolyn.List::class.java).apply{}
+        startActivity(intent)
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
