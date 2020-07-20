@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.mukesh.OtpView
 
-class Login : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     //Root layout
     lateinit var rootLayout: RelativeLayout
@@ -70,7 +70,7 @@ class Login : AppCompatActivity() {
     }
 
     fun signIn(view: View) {
-        val intent = Intent(this, com.example.kiolyn.List::class.java).apply{}
+        val intent = Intent(this, com.example.kiolyn.ListActivity::class.java).apply{}
         startActivity(intent)
     }
 
