@@ -5,6 +5,7 @@ import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -26,6 +27,7 @@ class ListFragment : Fragment() {
     private lateinit var rvItems: RecyclerView
     private lateinit var swipeLayout: SwipeRefreshLayout
     private lateinit var textView: TextView
+    private lateinit var addBtn: Button
 
     companion object {
         fun newInstance(message: String): ListFragment {
@@ -65,12 +67,17 @@ class ListFragment : Fragment() {
             setupRefresh()
         }
 
+        addBtn.setOnClickListener {
+            addItem()
+        }
+
         queue = Volley.newRequestQueue(this.context)
 
         return view
     }
 
     private fun initializeUi(view: View) {
+        addBtn = view.findViewById(R.id.add_btn)
         textView = view.findViewById(R.id.fragment_txt)
         rvItems = view.findViewById(R.id.rv_items)
         swipeLayout = view.findViewById(R.id.swipe_refresh)
@@ -105,7 +112,7 @@ class ListFragment : Fragment() {
         queue.add(jsonRequest)
     }
 
-    fun addItem(view: View) {
+    private fun addItem() {
         items.addAll(Items.createItems(1))
         val adapter = ItemsAdapter(items)
         rvItems.adapter = adapter
