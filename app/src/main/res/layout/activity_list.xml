@@ -30,25 +30,31 @@
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="@id/root_layout" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/title_rv" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="50dp"
-        app:layout_constraintTop_toBottomOf="@id/title_rv">
+        app:layout_constraintTop_toBottomOf="@id/view_pager">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
-            android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@id/title_rv" />
+            android:scrollbars="vertical" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
