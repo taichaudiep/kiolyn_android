@@ -15,11 +15,11 @@ class ItemsAdapter(private val mItems: ArrayList<Items>) :
     RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
-        val itemLayout: LinearLayout = itemView.findViewById(R.id.item_contain)
+        val itemLayout: View = itemView.findViewById(R.id.item_contain)
         val titleTxt: TextView = itemView.findViewById<TextView>(R.id.item_title)
         val titleImg: ImageView = itemView.findViewById<ImageView>(R.id.img_view)
 
-        val detailLayout: LinearLayout = itemView.findViewById(R.id.detail_layout)
+        val detailLayout: ViewGroup = itemView.findViewById(R.id.detail_layout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsAdapter.ViewHolder {

@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionManager
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
@@ -16,7 +17,7 @@ import com.mukesh.OtpView
 class LoginActivity : AppCompatActivity() {
 
     //Root layout
-    lateinit var rootLayout: RelativeLayout
+    lateinit var rootLayout: ViewGroup
 
     //Component of main layout
     lateinit var loginView: RelativeLayout

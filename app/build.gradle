@@ -43,7 +43,11 @@ dependencies {
     //Call request
     implementation 'com.android.volley:volley:1.1.1'
     //Material library
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    //Bonjour for discovery network service
+    implementation 'de.mannodermaus.rxjava2:rxbonjour:2.0.0-RC1'
+    implementation "de.mannodermaus.rxjava2:rxbonjour-platform-android:2.0.0-RC1"
+    implementation "de.mannodermaus.rxjava2:rxbonjour-driver-jmdns:2.0.0-RC1"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

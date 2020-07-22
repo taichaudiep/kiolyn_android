@@ -5,7 +5,6 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     tools:context=".ListActivity">
 
     <com.google.android.material.tabs.TabLayout
@@ -13,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGreenLight"
-        app:layout_constraintTop_toTopOf="@+id/root_layout" />
+        app:layout_constraintTop_toTopOf="@+id/root_layout"
+        app:tabIndicatorColor="@color/colorSuperLight" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"

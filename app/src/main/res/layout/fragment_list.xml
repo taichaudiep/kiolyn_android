@@ -9,12 +9,12 @@
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="50dp"
         android:background="@drawable/green_btn"
         android:text="@string/add"
         android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="@+id/root_layout"
+        app:layout_constraintBottom_toBottomOf="@+id/swipe_refresh"
         app:layout_constraintEnd_toEndOf="@+id/root_layout" />
 
     <TextView
@@ -26,21 +26,22 @@
         android:padding="12dp"
         android:textAllCaps="true"
         android:textColor="#fff"
-        android:textSize="22dp"
+        android:textSize="15sp"
         app:layout_constraintTop_toTopOf="@+id/root_layout" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingBottom="100dp"
-        app:layout_constraintHeight_percent=".9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.85"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_txt">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_items"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:paddingHorizontal="5dp"
             android:scrollbars="vertical" />
 
