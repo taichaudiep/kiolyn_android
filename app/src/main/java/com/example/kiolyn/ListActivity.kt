@@ -3,13 +3,11 @@ package com.example.kiolyn
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
+import androidx.databinding.DataBindingUtil
+import com.example.kiolyn.databinding.ActivityListBinding
 
 class ListActivity : AppCompatActivity() {
-
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
+    lateinit var binding: ActivityListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,15 +17,8 @@ class ListActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        setContentView(R.layout.activity_list)
-
-        initializeUi()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_list)
         setupPagerView()
-    }
-
-    private fun initializeUi() {
-        tabLayout = findViewById(R.id.tab_layout)
-        viewPager = findViewById(R.id.view_pager)
     }
 
     private fun setupPagerView() {
@@ -39,8 +30,8 @@ class ListActivity : AppCompatActivity() {
         adapter.addFragment(firstFragment, "9.am - 12.am")
         adapter.addFragment(secondFragment, "8.pm - 11.pm")
 
-        viewPager.adapter = adapter
-        tabLayout.setupWithViewPager(viewPager)
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
 
 }

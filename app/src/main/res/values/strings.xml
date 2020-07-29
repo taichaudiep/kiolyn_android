@@ -3,13 +3,13 @@
     <string name="connect_btn">Connect to Client</string>
     <string name="disconnect_btn">Disconnect to Client</string>
     <string name="signIn_btn">Sign in</string>
-    <string name="input_login_1">IP 1</string>
-    <string name="input_login_2">IP 2</string>
-    <string name="title_popup">IP ADDRESS</string>
+    <string name="ip_address">IP Address</string>
+    <string name="port">Port</string>
     <string name="accept_btn">ACCEPT</string>
     <string name="title_item">Item</string>
     <string name="detail_item">Detail</string>
     <string name="description_img">Icon</string>
     <string name="tables">TABLES</string>
     <string name="add">ADD</string>
+    <string name="toast_invalidtype">\'%s\' is not a valid Bonjour type!</string>
 </resources>

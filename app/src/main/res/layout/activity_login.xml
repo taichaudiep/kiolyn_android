@@ -1,144 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorGreenDark"
-    tools:context=".LoginActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="network"
+            type="com.example.kiolyn.model.Network" />
+    </data>
 
-    <RelativeLayout
-        android:id="@+id/login_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:padding="50dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGreenDark"
+        tools:context=".LoginActivity">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:id="@+id/login_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="#fff"
-            android:textSize="50sp" />
+            android:padding="50dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/input_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/login_edit"
-            android:hint="@string/input_login_1"
-            android:inputType="text"
-            android:padding="5dp"
-            android:importantForAutofill="no" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="#fff"
+                android:textSize="50sp" />
 
-        <EditText
-            android:id="@+id/input_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/input_1"
-            android:layout_marginVertical="20dp"
-            android:background="@drawable/login_edit"
-            android:hint="@string/input_login_2"
-            android:inputType="text"
-            android:padding="5dp"
-            android:importantForAutofill="no" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/login_edit"
+                android:hint="@string/ip_address"
+                android:importantForAutofill="no"
+                android:text="@{network.host}"
+                android:inputType="text"
+                android:padding="5dp" />
 
-        <Button
-            android:id="@+id/connect_btn"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_1"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/login_edit"
+                android:hint="@string/port"
+                android:text="@{network.port}"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:padding="5dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/connect_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/input_2"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorGreenLight"
+                android:onClick="connectClick"
+                android:text="@string/connect_btn"
+                android:textColor="#fff" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/signIn_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/input_2"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/colorGreenLight"
+                android:onClick="signIn"
+                android:text="@string/signIn_btn"
+                android:textColor="#fff"
+                android:visibility="invisible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/disconnect_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/signIn_btn"
+                android:layout_marginHorizontal="20dp"
+                android:backgroundTint="@color/colorGreenLight"
+                android:onClick="disconnectClick"
+                android:text="@string/disconnect_btn"
+                android:textColor="#fff"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/popup_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/input_2"
+            android:layout_centerVertical="true"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/login_btn"
-            android:onClick="connectClick"
-            android:text="@string/connect_btn" />
+            android:background="@drawable/bg_popup"
+            android:paddingVertical="20dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/signIn_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/input_2"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/login_btn"
-            android:onClick="signIn"
-            android:text="@string/signIn_btn"
-            android:visibility="invisible" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_popup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/ip_address"
+                android:textAllCaps="true"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/disconnect_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/signIn_btn"
-            android:layout_marginHorizontal="20dp"
-            android:background="@drawable/login_btn"
-            android:onClick="disconnectClick"
-            android:text="@string/disconnect_btn"
-            android:visibility="invisible" />
+            <com.mukesh.OtpView
+                android:id="@+id/otp_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_popup"
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:inputType="number"
+                android:itemBackground="@drawable/bg_otp_item"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:hideLineWhenFilled="false"
+                app:itemCount="6"
+                app:itemSpacing="5dp"
+                app:lineColor="@color/otp_item_state"
+                app:state_filled="true"
+                app:viewType="line" />
 
-    </RelativeLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/accept_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/otp_view"
+                android:layout_marginHorizontal="50dp"
+                android:backgroundTint="@color/colorGreenLight"
+                android:onClick="acceptClick"
+                android:text="@string/accept_btn"
+                android:textColor="#fff" />
 
-    <RelativeLayout
-        android:id="@+id/popup_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/bg_popup"
-        android:paddingVertical="20dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/title_popup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/title_popup"
-            android:textSize="20sp" />
-
-        <com.mukesh.OtpView
-            android:id="@+id/otp_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title_popup"
-            android:layout_centerInParent="true"
-            android:layout_margin="20dp"
-            android:inputType="number"
-            android:itemBackground="@drawable/bg_otp_item"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            app:hideLineWhenFilled="false"
-            app:itemCount="6"
-            app:itemSpacing="5dp"
-            app:lineColor="@color/otp_item_state"
-            app:state_filled="true"
-            app:viewType="line" />
-
-        <Button
-            android:id="@+id/accept_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/otp_view"
-            android:layout_marginHorizontal="50dp"
-            android:onClick="acceptClick"
-            android:text="@string/accept_btn" />
-
-    </RelativeLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

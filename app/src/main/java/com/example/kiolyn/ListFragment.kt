@@ -16,11 +16,12 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 
 class ListFragment : Fragment() {
     private lateinit var queue: RequestQueue
-    private val GET_URL = "https://postman-echo.com/basic-auth"
+    private val GET_URL = "https://www.google.com"
 
     private lateinit var items: ArrayList<Items>
 
@@ -110,6 +111,7 @@ class ListFragment : Fragment() {
             }
         }
         queue.add(jsonRequest)
+
     }
 
     private fun addItem() {
